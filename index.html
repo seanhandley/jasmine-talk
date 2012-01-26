@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title>Testing with Jasmine</title>
+  <title>Testing withJasmine</title>
 
   <meta name="description" content="Description of presentation">
   <meta name="author" content="Author">
@@ -34,36 +34,87 @@
     <p><img src="assets/img/jasmineheader.png" style="margin-top:200px"></p>
   </section>
 
-  <section class="slide" id="whois">
-    <h2>/whois seanhandley</h2>
-    <img src="assets/img/me.jpg" style="float:right;height:250px;width:325px;margin-right:200px">
+  <section class="slide" id="princess">
+    <h2>Fun facts about Jasmine</h2>
+    <div style="margin-top: 10px; float:left;margin-right:50px"><img src="assets/img/princess.jpg" alt="Wat" /></div>
     <ul>
-      <li>I'm Sean Handley.</li>
-      <li>I (mostly) write Ruby codez.</li>
-      <li>Tweet me <a href="http://twitter.com/#!/seanhandley">@seanhandley</a></li>
+      <li class="slide" id="princess-bullet1" style="background:transparent">Princess Jasmine is actually voiced by two different actresses - one to speak and one to sing.</li>
+      <li class="slide" id="princess-bullet2" style="background:transparent">Jasmine is the only Disney Princess to ever kiss a villain.</li>
+      <li class="slide" id="princess-bullet3" style="background:transparent">Jasmine is the first Disney Princess to wear pants.</li>
     </ul>
+  </section>
+
+  <section class="slide" id="wat1">
+    <img src="assets/img/wat.jpg" alt="Wat" style="margin-top: 100px" />
+  </section>
+
+  <section class="slide" id="start-again">
+    <h2>Let's start again...</h2>
+  </section>
+
+  <section class="slide" id="some-facts">
+    <h2>Some (Real) Jasmine Facts</h2>
+    <ul>
+      <li class="slide" id="facts-bullet0">A native behavioural testing framework for JavaScript</li>
+      <li class="slide" id="facts-bullet1">Created by Pivotal Labs</li>
+      <li class="slide" id="facts-bullet2">The BDD successor to JS Unit (no longer maintained)</li>
+      <li class="slide" id="facts-bullet3">Goals of the framework:<li>
+        <ul>
+          <li class="slide" id="facts-bullet3-sub1">should not be tied to any browser, framework, platform, or host language.</li>
+          <li class="slide" id="facts-bullet3-sub2">should have idiomatic and unsurprising syntax.</li>
+          <li class="slide" id="facts-bullet3-sub3">should work anywhere JavaScript can run, including browsers, servers, phones, etc.</li>
+          <li class="slide" id="facts-bullet3-sub4">shouldn't intrude in your application's territory (e.g. by cluttering the global namespace).</li>
+          <li class="slide" id="facts-bullet3-sub5">should play well with IDEs (e.g. test code should pass static analysis).</li>
+        </ul>
+    </ul>
+  </section>
+
+  <section class="slide" id="pivotal-ci">
+    <h2>By the way...</h2>
+    <h3>Pivotal CI (publicly visible!)</h3>
+    <img src="assets/img/pivotal-ci.png" alt="Fail" style="margin-top: 10px" />
+  </section>
+
+  <section class="slide" id="hudson">
+    <h2>So how is our old friend Hudson?</h2>
+    <p style="font-size:small">* Yes, I know it's Jenkins now...</p>
+    <img class="slide" id="hudson-img" src="assets/img/hudson.png" alt="Fail" style="margin-top: 10px" />
+  </section>
+
+  <section class="slide" id="game-over">
+    <h2>Game over, man! Game over!</h2>
+    <img src="assets/img/gameover.jpg" alt="Fail" style="margin-top: 10px" />
   </section>
 
   <section class="slide" id="why">
     <h2>Why bother testing?</h2>
     <ul>
       <li class="slide" id="why-bullet1">
-        Testing code is a Good Thing.
+        Q: Why do we test our code?
       </li>
-
       <li class="slide" id="why-bullet2">
-        Unit testing code is an Extra Good Thing.
+        A: So we know it does what we think it does
       </li>
       <li class="slide" id="why-bullet3">
-        JavaScript is code.
+        Why is unit testing more valuable than acceptance testing?
       </li>
       <li class="slide" id="why-bullet4">
+        Trick question: They both have their place. We should do both!
+      </li>
+      <br>
+      <li class="slide" id="why-bullet5">
+        We unit test (nearly) all our Ruby code (kinda).
+      </li>
+      <li class="slide" id="why-bullet6">
+        JavaScript is code.
+      </li>
+      <li class="slide" id="why-bullet7">
         Therefore: Let's unit-test it.
       </li>
     </ul>
   </section>
 
-  <section class="slide" id="wat">
+  <section class="slide" id="wat2">
     <img src="assets/img/wat.jpg" alt="Wat" style="margin-top: 100px" />
   </section>
 
@@ -75,53 +126,127 @@
     </blockquote>
   </section>
 
-  <section class="slide" id="codez">
-    <h2>Ok! Codez!</h2>
-    <h3>my_awesome_page_spec.js</h3>
+  <section class="slide" id="installing">
+    <h2>Installing Jasmine</h2>
+    <h3>Gemfile</h3>
     <pre class="prettyprint">
-describe("my_awesome_page", function() {
 
-  beforeEach(function() {
-    loadFixtures("awesome.html");
-  });
+      ...
+      gem 'jasmine'
+      ...
+    </pre>
+    <h3>Run</h3>
+    <pre class="prettyprint">
 
-  describe("#change_status(status)", function() {
-    it("should change the status message", function() {
-      expect($('div#awesome').text()).toNotEqual("Awesome!");
-      change_status('Awesome!');
-      expect($('div#awesome').text()).toEqual("Awesome!");
+      $ bundle install
+      $ jasmine init
+    </pre>
+  </section>
+
+  <section class="slide" id="anatomy">
+    <h2>Anatomy</h2>
+    <h3>/spec</h3>
+    <pre class="prettyprint">
+
+    + spec/
+      + javascripts/
+        + fixtures/
+          - awesome.html
+        + helpers/
+          - jasmine-jquery.js
+        - my_awesome_page_spec.js
+        + support/
+          - jasmine.yml
+          - jasmine_config.rb
+          - jasmine_runner.rb
+    </pre>
+  </section>
+
+  <section class="slide" id="anatomy2">
+    <h2>Anatomy</h2>
+    <h3>jasmine.yml</h3>
+    <pre>
+  src_files:
+    - public/javascripts/jquery.min.js
+    - public/javascripts/my_awesome_page.js
+
+  stylesheets:
+    - stylesheets/**/*.css
+
+  helpers:
+    - helpers/jasmine-jquery.js
+
+  spec_files:
+    - '**/*[sS]pec.js'
+
+  src_dir: '/'
+
+  spec_dir: spec/javascripts
+    </pre>
+  </section>
+
+  <section class="slide" id="running">
+    <h2>Running your tests</h2>
+    <h3>On Dev Machine</h3>
+    <pre class="prettyprint">
+
+      $ rake jasmine # launches server
+    </pre>
+
+    <h3>On CI Server</h3>
+    <pre class="prettyprint">
+
+      $ rake jasmine:ci # launches tests as a non-interactive job
+    </pre>
+  </section>
+
+    <section class="slide" id="codez">
+      <h2>Ok! Codez!</h2>
+      <h3>my_awesome_page_spec.js</h3>
+      <pre class="prettyprint">
+  describe("my_awesome_page", function() {
+
+    beforeEach(function() {
+      loadFixtures("awesome.html");
+    });
+
+    describe("#change_status(status)", function() {
+      it("should change the status message", function() {
+        expect($('div#awesome').text()).toNotEqual("Awesome!");
+        change_status('Awesome!');
+        expect($('div#awesome').text()).toEqual("Awesome!");
+      });
     });
   });
-});
-    </pre>
-  </section>
+      </pre>
+    </section>
 
-  <section class="slide" id="fail">
-    <h2>Code fail!</h2>
-    <h3>http://localhost:8888</h3>
-    <img src="assets/img/fail.png" alt="Fail" style="margin-top: 10px" />
-  </section>
+    <section class="slide" id="fail">
+      <h2>Code fail!</h2>
+      <h3>http://localhost:8888</h3>
+      <img src="assets/img/fail.png" alt="Fail" style="margin-top: 10px" />
+    </section>
 
-  <section class="slide" id="moar-codez">
-    <h2>Ok! Moar codez!</h2>
-    <h3>awesome.html</h3>
-    <pre class="prettyprint">
-&lt;div id="awesome"&gt;&lt;/div&gt;
-    </pre>
+    <section class="slide" id="moar-codez">
+      <h2>Ok! Moar codez!</h2>
+      <h3>awesome.html</h3>
+      <pre class="prettyprint">
+  &lt;div id="awesome"&gt;&lt;/div&gt;
+      </pre>
 
-    <h3>my_awesome_page.js</h3>
-    <pre class="prettyprint">
-function change_status(status){
-  $('div#awesome').append(status);
-}
-    </pre>
-  </section>
+      <h3>my_awesome_page.js</h3>
+      <pre class="prettyprint">
+  function change_status(status){
+    $('div#awesome').append(status);
+  }
+      </pre>
+    </section>
 
-  <section class="slide" id="pass">
-    <h2>Code pass!</h2>
-    <h3>http://localhost:8888</h3>
-    <img src="assets/img/pass.png" alt="Pass" style="margin-top: 10px" />
-  </section>
+    <section class="slide" id="pass">
+      <h2>Code pass!</h2>
+      <h3>http://localhost:8888</h3>
+      <img src="assets/img/pass.png" alt="Pass" style="margin-top: 10px" />
+    </section>
 
   <section class="slide" id="cool-things">
     <h2>Cool things</h2>
@@ -152,12 +277,13 @@ function change_status(status){
     <p>The main Jasmine page - <a href="http://pivotal.github.com/jasmine/">http://pivotal.github.com/jasmine/</a></p>
     <p>The jasmine-jquery helper - <a href="https://github.com/velesin/jasmine-jquery">https://github.com/velesin/jasmine-jquery</a></p>
     <h3>Get these slides and sample app</h3>
-    <p><a href="https://github.com/seanhandley/jasmine-lightning-talk">https://github.com/seanhandley/jasmine-lightning-talk</a></p>
+    <p><a href="https://github.com/seanhandley/jasmine-lightning-talk">https://github.com/seanhandley/jasmine-talk</a></p>
   </section>
 
   <section class="slide" id="questions">
     <h2>Questions???</h2>
-    <img src="assets/img/questions.gif" alt="Wat" style="margin-top: 10px; height:400px; width:750px" />
+    <img src="assets/img/carpet.gif" alt="Pass" style="margin-top: 100px" />
+
   </section>
 
   <!-- Extension markup -->
